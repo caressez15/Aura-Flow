@@ -16,7 +16,7 @@ Imagine you are editing a **summer beach vlog**. The video contains dialogue, so
     AuraFlow handles the reasoning, parameter extraction, and asset generation in one go.
 
 <div align="center">
-  <img src="./assets/demo.png" width="80%">
+  <img src="./assets/demo.png" width="30%">
 </div>
 
 
