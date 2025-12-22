@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.env
+.DS_Store
+
+# Frontend
+node_modules/
+dist/
+build/
+
+# Large AI Models (Download from HuggingFace instead)
+*.safetensors
+*.bin
+*.pth
+
+# Duplicate/Mistake folder 
+client/
