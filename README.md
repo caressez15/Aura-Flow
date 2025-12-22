@@ -15,7 +15,11 @@ Imagine you are editing a **summer beach vlog**. The video contains dialogue, so
     
     AuraFlow handles the reasoning, parameter extraction, and asset generation in one go.
 
----
+<div align="center">
+  <img src="./assets/demo.png" width="80%">
+</div>
+
+
 
 ## 🏗 System Architecture
 
@@ -40,6 +44,7 @@ graph TD
     SD --> Output[Visual Assets]
 ```
 
+
 ## 🚀 Key Features & Technical Highlights
 1. Fine-Tuned LLM Reasoning (The "Brain")
 
@@ -57,6 +62,7 @@ We decouple the technical stack to ensure high control:
 
 * **Style-LoRA:** A separate adapter trained on Stable Diffusion 1.5 using a curated dataset of "Cinematic/Vlog" aesthetics. This solves the "AI plastic look" problem, ensuring generated B-roll has a consistent, film-like grain.
 
+
 ## 🛠 Tech Stack
 * **Core Logic:** Python, LangChain
 
@@ -70,10 +76,12 @@ We decouple the technical stack to ensure high control:
 
 * **Audio:** MusicGen (via API/Local inference)
 
+
 ## 📥 Model Weights
 Due to GitHub file size limits, the fine-tuned LoRA weights and model assets are hosted on HuggingFace:
 
 👉 [Download Models on HuggingFace](https://huggingface.co/CaresseZ/aura-flow-assets)
+
 
 ## 🚧 Current Status & Limitations
 * **Localhost Prototype:** The project currently runs fully on a local environment.
@@ -81,6 +89,7 @@ Due to GitHub file size limits, the fine-tuned LoRA weights and model assets are
 * **Video Generation:** Temporarily disabled due to hardware compute limitations.
 
 * **Cloud Deployment:** Not yet deployed to cloud infrastructure due to GPU cost considerations.
+
 
 ## 🗺 Roadmap
 ### Phase 1 (Current)
@@ -103,6 +112,7 @@ Due to GitHub file size limits, the fine-tuned LoRA weights and model assets are
 * [ ] Deploy inference endpoints to HuggingFace Spaces or AWS SageMaker.
 
 * [ ] Real-time video preview generation.
+
 
 ## 🔧 Getting Started (Local Dev)
 
