@@ -51,6 +51,20 @@ graph TD
 ```
 
 
+## 🛠 Tech Stack
+* **Core Logic:** Python, LangChain
+
+* **Backend:** FastAPI, Uvicorn
+
+* **Frontend:** React, Vite, TailwindCSS (Pastel UI / Soft Tech aesthetic)
+
+* **AI/ML:** LLM: Qwen-7B (Base), PEFT (LoRA)
+
+* **Visuals:** PyTorch, Stable Diffusion 1.5
+
+* **Audio:** MusicGen (via API/Local inference)
+
+
 ## 🚀 Key Features & Technical Highlights
 1. **Autonomous Agent Orchestration**
 
@@ -71,34 +85,6 @@ To ensure commercial viability and reduce "AI hallucinations," AuraFlow implemen
 5. **Dual-LoRA Aesthetic Control**
 
 While the LLM-LoRA handles logic, a parallel **Style-LoRA trained** on **Stable Diffusion 1.5** ensures the generated B-roll avoids the generic "AI plastic look," maintaining a consistent, filmic grain suitable for professional Vlogs.
-
-
-## 🛠 Tech Stack
-* **Core Logic:** Python, LangChain
-
-* **Backend:** FastAPI, Uvicorn
-
-* **Frontend:** React, Vite, TailwindCSS (Pastel UI / Soft Tech aesthetic)
-
-* **AI/ML:** LLM: Qwen-7B (Base), PEFT (LoRA)
-
-* **Visuals:** PyTorch, Stable Diffusion 1.5
-
-* **Audio:** MusicGen (via API/Local inference)
-
-
-## 📥 Model Weights
-Due to GitHub file size limits, the fine-tuned LoRA weights and model assets are hosted on HuggingFace:
-
-👉 [Download Models on HuggingFace](https://huggingface.co/CaresseZ/aura-flow-assets)
-
-
-## 🚧 Current Status & Limitations
-* **Localhost Prototype:** The project currently runs fully on a local environment.
-
-* **Video Generation:** Temporarily disabled due to hardware compute limitations.
-
-* **Cloud Deployment:** Not yet deployed to cloud infrastructure due to GPU cost considerations.
 
 
 ## 🗺 Roadmap
@@ -124,6 +110,21 @@ Due to GitHub file size limits, the fine-tuned LoRA weights and model assets are
 * [ ] Deploy scalable REST APIs to HuggingFace Spaces or AWS SageMaker.
 
 * [ ] Implement user preference memory for personalized aesthetic generation.
+
+
+
+## 📥 Model Weights
+Due to GitHub file size limits, the fine-tuned LoRA weights and model assets are hosted on HuggingFace:
+
+👉 [Download Models on HuggingFace](https://huggingface.co/CaresseZ/aura-flow-assets)
+
+
+## 🚧 Current Status & Limitations
+* **Localhost Prototype:** The project currently runs fully on a local environment.
+
+* **Video Generation:** Temporarily disabled due to hardware compute limitations.
+
+* **Cloud Deployment:** Not yet deployed to cloud infrastructure due to GPU cost considerations.
 
 
 ## 🔧 Getting Started (Local Dev)
