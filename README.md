@@ -2,18 +2,20 @@
 
 ![Python](https://img.shields.io/badge/Python-3.9%2B-blue) ![PyTorch](https://img.shields.io/badge/PyTorch-2.0-orange) ![FastAPI](https://img.shields.io/badge/FastAPI-0.95-green) ![Status](https://img.shields.io/badge/Status-Local_Prototype-yellow)
 
-**AuraFlow** is an end-to-end generative AI system designed to solve the "last mile" problem in video post-production. It acts as an intelligent director, translating abstract emotional prompts into precise, theoretically sound background music (BGM) and aesthetically consistent B-roll visuals.
+**AuraFlow** is an end-to-end, agentic generative AI system designed to solve the "last mile" bottleneck in commercial video post-production. Operating as an autonomous "Virtual Director," AuraFlow translates abstract emotional and narrative prompts into precise, theoretically sound audio engineering parameters and aesthetically consistent visual assets.
 
-## 🎬 The "Why": A Real-World Scenario
+It eliminates the friction of manual royalty-free music searching and stock footage curation by deploying a multi-agent orchestration workflow.
 
-Imagine you are editing a **summer beach vlog**. The video contains dialogue, so you need a pure instrumental track that won't clash with human voices.
 
-* **The Challenge:** You need the music to start upbeat but shift to a "warm, soothing" vibe at the 0:15 mark to match a scene of stargazing with friends. You also realize you are missing footage for the transition and need a copyright-free, atmospheric clip of a "sunset over the sea" to bridge the scenes.
-* **The Current Solution:** You spend hours searching Epidemic Sound for a track that *might* fit, and Pexels for a stock video that doesn't look like generic stock footage.
-* **The AuraFlow Solution:** You simply tell the agent:
-    > *"I need a BGM that works for a summer vlog. Keep it instrumental. At 15 seconds, shift the emotion to warm and soothing for a stargazing scene. Also, generate a 5-second B-roll of a sunset over the sea, cinematic style."*
+## 🎬 The "Why": Solving the Post-Production Bottleneck
+
+Imagine editing an **commercial summer lifestyle vlog**. You need an instrumental background track that avoids frequency masking with human voices, dynamically shifts emotion at specific timestamps, and requires bridging B-roll for scene transitions.
+
+* **The Industry Friction:** Editors spend countless hours navigating licensing platforms (e.g., Epidemic Sound) for tracks that almost fit, and stock sites for visuals that often lack aesthetic cohesion.
+* **The AuraFlow Solution:** ou simply instruct the Agent in natural language:
+    > *"I need an instrumental BGM for a summer vlog. At the 0:15 mark, transition the harmonic progression and mood to a warm, soothing vibe for a stargazing scene. Also, generate a 5-second cinematic B-roll of a sunset over the sea to bridge the transition."*
     
-    AuraFlow handles the reasoning, parameter extraction, and asset generation in one go.
+    AuraFlow's autonomous agent parses the timeline, extracts musical and visual parameters, triggers the respective generative engines, and evaluates the output—delivering production-ready assets in seconds.
 
 <div align="center">
   <img src="./assets/demo.png" width="30%">
@@ -23,44 +25,52 @@ Imagine you are editing a **summer beach vlog**. The video contains dialogue, so
 
 ## 🏗 System Architecture
 
-AuraFlow separates **Logic (Reasoning)** from **Creativity (Generation)** using a decoupled Dual-LoRA architecture.
+AuraFlow separates **Orchestration (Reasoning)** from **Execution (Generation)** using a decoupled Dual-LoRA framework, allowing for precise control over both musical theory and visual aesthetics.
 
 ```mermaid
 graph TD
-    User[User Prompt] -->|Natural Language| Agent["LLM Agent (Qwen-7B + Music Theory LoRA)"]
+    User[User Prompt] -->|Natural Language| Agent["Director Agent (Qwen-7B + Music Theory LoRA)"]
     
-    subgraph "Reasoning Core"
-        Agent -->|Extracts| JSON[Structured JSON Parameters]
-        JSON -->|Music Params| AudioEng[Audio Engine]
-        JSON -->|Visual Prompts| VideoEng[Video Engine]
+    subgraph "Agentic Orchestration Core"
+        Agent -->|Timeline & Logic Parsing| JSON[Structured Engineering JSON]
+        JSON -->|Harmonic & Tempo Params| AudioEng[Audio Execution Node]
+        JSON -->|Style & Subject Prompts| VideoEng[Video Execution Node]
     end
     
-    subgraph "Generative Pipeline"
-        AudioEng -->|Key/Tempo/Instr| MusicGen[Music Generation Module]
-        VideoEng -->|Style Prompt| SD["Stable Diffusion + Style LoRA"]
+    subgraph "Generative Execution Pipeline"
+        AudioEng -->|BPM / Key / Instrumentation| MusicGen[MusicGen Audio Engine]
+        VideoEng -->|Cinematic Prompt| SD["Stable Diffusion + Style LoRA"]
     end
     
-    MusicGen --> Output[Audio Assets]
-    SD --> Output[Visual Assets]
+    subgraph "Quality Assurance (QA) Node"
+        MusicGen --> CLAP[CLAP Reranker]
+        CLAP -->|Semantic-Audio Alignment| Output[High-Fidelity Audio Assets]
+    end
+    
+    SD --> VisualOut[Visual Assets]
 ```
 
 
 ## 🚀 Key Features & Technical Highlights
-1. Fine-Tuned LLM Reasoning (The "Brain")
+1. **Autonomous Agent Orchestration**
 
-Unlike generic chatbots, AuraFlow doesn't just "chat." It translates abstract emotions into engineering parameters.
+Unlike traditional chatbots, AuraFlow functions as a task-oriented agent. It autonomously decodes narrative intent into structured, timeline-based actions. The **fine-tuned Qwen-7B model** acts as the "brain," managing tool-calling for downstream audio and image generation APIs based on contextual reasoning.
 
-* **Custom SFT Dataset:** Constructed a dataset (~300 entries) mapping abstract adjectives (e.g., "ambiguous," "tense") to concrete music theory parameters (e.g., Key: D Minor, Tempo: 120bpm, Instrument: Pizzicato Strings).
+2. **Expert-Level Music Theory SFT**
 
-* **LLM-LoRA:** Fine-tuned Qwen-7B (Rank=32) to output structured JSON that drives the downstream generation engines, ensuring the music evolves dynamically over time.
+To bridge the gap between AI generation and professional audio engineering, the LLM reasoning core was fine-tuned on **a custom SFT dataset** (~300 entries). Grounded in formal harmonic analysis and aural perception principles, this allows the agent to map abstract adjectives (e.g., "tense") to precise structural parameters (e.g., Key: D Minor, Tempo: 120bpm, Instrument: Pizzicato Strings, Phrygian dominant elements).
 
-2. Dual-LoRA Architecture
+3. **High-Fidelity Audio Representation & Generation**
 
-We decouple the technical stack to ensure high control:
+Leveraging advanced neural audio compression, AuraFlow integrates the **EnCodec architecture**. By utilizing Multi-scale Residual Vector Quantization (RVQ), the system achieves discrete, high-quality audio representation. This effectively minimizes frequency distortion and improves the harmonic continuity of the generated 32kHz audio tracks.
 
-* **LLM-LoRA:** Handles logic and instruction following (translating "sad" to "Minor Key").
+4. **Automated Reranking & Quality Control (CLAP)**
 
-* **Style-LoRA:** A separate adapter trained on Stable Diffusion 1.5 using a curated dataset of "Cinematic/Vlog" aesthetics. This solves the "AI plastic look" problem, ensuring generated B-roll has a consistent, film-like grain.
+To ensure commercial viability and reduce "AI hallucinations," AuraFlow implements a **QA loop**. A CLAP (Contrastive Language-Audio Pretraining) module operates as a filter on the inference side, quantifying the semantic similarity between the user's initial prompt and the generated audio, automatically reranking outputs to deliver the highest-matching asset.
+
+5. **Dual-LoRA Aesthetic Control**
+
+While the LLM-LoRA handles logic, a parallel **Style-LoRA trained** on **Stable Diffusion 1.5** ensures the generated B-roll avoids the generic "AI plastic look," maintaining a consistent, filmic grain suitable for professional Vlogs.
 
 
 ## 🛠 Tech Stack
@@ -94,24 +104,26 @@ Due to GitHub file size limits, the fine-tuned LoRA weights and model assets are
 ## 🗺 Roadmap
 ### Phase 1 (Current)
 
-* [x] Multimodal pipeline setup (Text -> Audio + Image).
+* [x] Multimodal Agent orchestration (Text -> Audio + Image).
 
-* [x] Fine-tuning of LLM for music theory parameters.
+* [x] SFT of LLM for professional music theory parameterization.
 
-* [x] React Frontend with chat interface.
+* [x] Integration of CLAP for automated output reranking.
 
 ### Phase 2 (Productivity & Interaction)
 
-* [ ] **Hum-to-BGM:** Integrate pYIN (pitch detection) to allow users to hum a melody, which AuraFlow expands into a full arrangement.
+* [ ] **Hum-to-BGM(Pitch Tracking):** Integrate pYIN pitch detection, allowing the Agent to ingest a hummed melody and output a fully arranged, multi-track MIDI/Audio stem.
+      
+* [ ] **ONNX Runtime Optimization:** Accelerate MusicGen inference via ONNX to enable near-real-time generation, paving the way for VST/AU plugin formats.
 
 * [ ] **Pomodoro Focus Mode:** Custom "Focus Zones" where users can upload a photo to generate a dynamic Lofi background + music timer.
 
 
 ### Phase 3 (Cloud)
 
-* [ ] Deploy inference endpoints to HuggingFace Spaces or AWS SageMaker.
+* [ ] Deploy scalable REST APIs to HuggingFace Spaces or AWS SageMaker.
 
-* [ ] Real-time video preview generation.
+* [ ] Implement user preference memory for personalized aesthetic generation.
 
 
 ## 🔧 Getting Started (Local Dev)
