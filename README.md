@@ -1,4 +1,4 @@
-# AuraFlow: Multimodal AI Co-Pilot for Video Creators
+# AuraFlow: Autonomous Multimodal AI Agent for Audio-Visual Production
 
 ![Python](https://img.shields.io/badge/Python-3.9%2B-blue) ![PyTorch](https://img.shields.io/badge/PyTorch-2.0-orange) ![FastAPI](https://img.shields.io/badge/FastAPI-0.95-green) ![Status](https://img.shields.io/badge/Status-Local_Prototype-yellow)
 
